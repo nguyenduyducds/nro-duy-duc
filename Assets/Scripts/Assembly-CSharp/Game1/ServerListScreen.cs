@@ -13,7 +13,7 @@ namespace Game1
 
 		public static bool[] hasConnected;
 
-		public static short[] port;
+		public static int[] port;
 
 		public static int selected;
 
@@ -276,7 +276,7 @@ namespace Game1
 			mResources.loadLanguague(sbyte.Parse(array[array.Length - 2]));
 			nameServer = new string[array.Length - 2];
 			address = new string[array.Length - 2];
-			port = new short[array.Length - 2];
+			port = new int[array.Length - 2];
 			language = new sbyte[array.Length - 2];
 			hasConnected = new bool[2];
 			for (int i = 0; i < array.Length - 2; i++)
@@ -284,7 +284,7 @@ namespace Game1
 				string[] array2 = Res.split(array[i].Trim(), ":", 0);
 				nameServer[i] = array2[0];
 				address[i] = array2[1];
-				port[i] = short.Parse(array2[2]);
+				port[i] = int.Parse(array2[2]);
 				language[i] = sbyte.Parse(array2[3].Trim());
 				lengthServer[language[i]]++;
 			}
@@ -625,7 +625,7 @@ namespace Game1
 					int num = array.Length;
 					nameServer = new string[num];
 					address = new string[num];
-					port = new short[num];
+					port = new int[num];
 					language = new sbyte[num];
 					for (int i = 0; i < num; i++)
 					{
@@ -643,7 +643,7 @@ namespace Game1
 						{
 							nameServer[i] = array2[0];
 							address[i] = array2[1];
-							port[i] = short.Parse(array2[2]);
+							port[i] = int.Parse(array2[2]);
 							language[i] = 0;
 							lengthServer[language[i]]++;
 						}
@@ -678,7 +678,7 @@ namespace Game1
 					int num2 = array3.Length - 1;
 					nameServer = new string[num2];
 					address = new string[num2];
-					port = new short[num2];
+					port = new int[num2];
 					language = new sbyte[num2];
 					for (int j = 0; j < num2; j++)
 					{
@@ -692,7 +692,7 @@ namespace Game1
 						{
 							nameServer[j] = array4[0];
 							address[j] = array4[1];
-							port[j] = short.Parse(array4[2]);
+							port[j] = int.Parse(array4[2]);
 							language[j] = 0;
 							lengthServer[language[j]]++;
 						}
