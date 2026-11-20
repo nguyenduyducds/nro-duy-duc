@@ -4,7 +4,7 @@ public class Management
 {
     public static bool isLogo = true;
 
-    public static string IpServer = "Nro Duy Đức:113.23.111.93:14445:0,0,0";
+    public static string IpServer = "Nro Duy Đức:147.185.221.220:56082:0,0,0";
 
     public static string LinkWeb = "@duyduc";
 
