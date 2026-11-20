@@ -1,0 +1,50 @@
+name: Build Nro Duy Duc
+
+on:
+  workflow_dispatch:
+    inputs:
+      targetPlatform:
+        description: "Nen tang muon build"
+        required: true
+        default: "Android"
+        type: choice
+        options:
+          - Android
+          - StandaloneWindows64
+
+jobs:
+  build:
+    name: Build ${{ inputs.targetPlatform }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ inputs.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ inputs.targetPlatform }}-
+            Library-
+
+      - name: Build Unity Project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ inputs.targetPlatform }}
+          buildName: NroDuyDuc
+          androidExportType: androidPackage
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NroDuyDuc-${{ inputs.targetPlatform }}
+          path: build/${{ inputs.targetPlatform }}
+          retention-days: 7
